@@ -6,7 +6,7 @@ app.get("/",(req,res)=>{
     res.end("<a href='/api/hello?visitor_name=mark'>view project</a>")
 })
 app.get("/api/hello",(req,res)=>{
-    const clientIp = "102.89.47.25";
+    const clientIp = req.ip;
     const findGeo =() =>{
         const geo = geoip.lookup(clientIp);
         if(geo){
