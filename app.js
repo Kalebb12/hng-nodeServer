@@ -6,7 +6,7 @@ app.get("/",(req,res)=>{
     res.end("<a href='/api/hello?visitor_name=mark'>view project</a>")
 })
 app.get("/api/hello",(req,res)=>{
-    const clientIp = req.ip;
+    const clientIp = "102.89.47.25";
     const findGeo =() =>{
         const geo = geoip.lookup(clientIp);
         if(geo){
@@ -14,7 +14,7 @@ app.get("/api/hello",(req,res)=>{
         }
         return "Unknown"
     }
-    const visitorName = req.query.visitor_name
+    const visitorName = req.query.visitor_name || "mark"
     if(!visitorName){
         res.status(400).json({ error: "Visitor name is required" })
     }
@@ -24,6 +24,7 @@ app.get("/api/hello",(req,res)=>{
         ,greeting: `Hello, ${visitorName}!, the temperature is 11 degrees Celcius in ${findGeo()}` 
     })
 })
+
 
 app.listen(8080, ()=>{
     console.log("Server is running on port 8080")
