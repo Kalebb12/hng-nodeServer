@@ -3,7 +3,7 @@ const geoip = require('geoip-lite')
 const app = express()
 
 app.get("/",(req,res)=>{
-    res.end("<a href='/api/hello?visitor_name=mark'>view project</a>")
+    res.send("<a href='/api/hello?visitor_name=mark'>view project</a>")
 })
 app.get("/api/hello",(req,res)=>{
     const clientIp = req.ip;
